@@ -33,6 +33,14 @@
                 </form>
             </article>
         </div> <!-- card.// -->
+        <div v-if="auth">
+            <pre v-if="keys" class="text-left mt-3 mx-3" style="word-wrap: break-word;">public key: {{key.PublicKey}} <br>private key: {{key.PrivateKey}}
+            </pre>
+            <p>Received from server</p>
+            <pre v-if="severkey" class="text-left mt-2 mx-3" style="word-wrap: break-word;">Server public key: {{serverKeySignature.PublicKey}} <br>signature: {{serverKeySignature.signature}}<br>Hash: {{serverKeySignature.Hash}}
+            </pre>
+            <p v-if="signatureVerified">Signature verified</p>
+        </div>
     </div>
 
    </template>
@@ -74,8 +82,37 @@ export default {
         data() {
             return {
                 password : '',
-                username : ''
+                username : '',
+                keys:false,
+                severkey:false,
+                privateKey: '',
+                publicKey: '',
+                key: [],
+                serverKeySignature: [],
+                auth: true,
+                signatureVerified: false,
             }
+        },
+
+
+
+        async created() {
+            let params = {}
+            axios({method: "POST", "url": "http://localhost:8081/getuserkey", data: params})
+                .then(response =>{
+                        this.keys = true;
+                        console.log(JSON.stringify(response.data))
+                    this.key = response.data
+                }),
+                axios({method: "POST", "url": "http://localhost:8081/serverKeySignature", data: params})
+                    .then(response =>{
+                        this.severkey = true;
+                        console.log(JSON.stringify(response.data))
+                        this.serverKeySignature = response.data
+                        if(this.serverKeySignature.Hash == this.serverKeySignature.Hash){
+                            this.signatureVerified = true
+                        }
+                    })
         },
 
         methods: {

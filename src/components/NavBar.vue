@@ -2,8 +2,8 @@
 
     <div>
         <b-navbar toggleable="lg" type="dark" variant="info">
-            <img alt="logo" height="50" width="50" src=".././assets/authentication-lock-icon.png">
-            <b-navbar-brand href="#">Biometric Based Remote User Authentication Scheme for Multi-Server Architecture</b-navbar-brand>
+
+            <b-navbar-brand style="font-size:2vw;" href="#"> <img alt="logo" height="40" width="auto" src=".././assets/authentication-lock-icon.png">Biometric Based Remote User Authentication Scheme for Multi-Server Architecture</b-navbar-brand>
 
             <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
