@@ -94,9 +94,12 @@
                     //     return false;
                     //
                     // }
+                    let sha256 = require('sha-256-js');
+                    let enpassword = sha256(this.password);
+
                     let params = {
                         username: this.username,
-                        password: this.password,
+                        password: enpassword,
                         email: this.email
                     }
                     axios({method: "POST", "url": "http://localhost:8081/users", data: params})
