@@ -6,7 +6,7 @@
             <article class="card-body">
                 <a href = "signUp" class="float-right btn btn-outline-primary" >Sign up</a>
 
-<!--                <li class="nav-item">  <router-link class="nav-link" to="/blog">Blog</router-link></li>-->
+                <!-- <li class="nav-item">  <router-link class="nav-link" to="/blog">Blog</router-link></li>-->
                 <h4 class="card-title mb-4 mt-1">Sign in</h4>
                 <!-- <p>
                    <font-awesome-icon icon="coffee" />
@@ -54,57 +54,58 @@ wYV9tG9CeMSoc8bZfdlMla3imUW5NE/x+w==
         </div>
     </div>
 
-   </template>
+</template>
 
 <script>
-// import HelloWorld from "@/components/HelloWorld";
-// import * as router from "vue-router";
+    // import HelloWorld from "@/components/HelloWorld";
+    // import * as router from "vue-router";
     // import HelloWorld from '/HelloWorld.vue'
-// import Vue from 'vue'import Router from 'vue-router';
+    // import Vue from 'vue'import Router from 'vue-router';
 
 
-import axios from "axios";
-// import VueRouter from "vue-router";
-
-
-
-// function login(username, password){
-//     let params = {
-//         username: username,
-//         password: password
-//     }
-//     axios({method: "POST", "url": "http://localhost:8081/login", data: params})
-//         .then(response =>{
-//             console.log(JSON.stringify(response.data))
-//             return true
-//             },(error) => {
-//                 console.log(error),
-//                     alert("user does not exists")
-//                     return false
-//             }
-//         )
-//}
-
-function reverseString(str) {
-    // Step 1. Use the split() method to return a new array
-    var splitString = str.split(""); // var splitString = "hello".split("");
-    // ["h", "e", "l", "l", "o"]
-
-    // Step 2. Use the reverse() method to reverse the new created array
-    var reverseArray = splitString.reverse(); // var reverseArray = ["h", "e", "l", "l", "o"].reverse();
-    // ["o", "l", "l", "e", "h"]
-
-    // Step 3. Use the join() method to join all elements of the array into a string
-    var joinArray = reverseArray.join(""); // var joinArray = ["o", "l", "l", "e", "h"].join("");
-    // "olleh"
-console.log(joinArray)
-    //Step 4. Return the reversed string
-    return joinArray; // "olleh"
-}
+    import axios from "axios";
+    import { myVar, urlHost } from './variables.js'
+    // import VueRouter from "vue-router";
 
 
 
-export default {
+    // function login(username, password){
+    //     let params = {
+    //         username: username,
+    //         password: password
+    //     }
+    //     axios({method: "POST", "url": "http://"+urlHost+":8081/login", data: params})
+    //         .then(response =>{
+    //             console.log(JSON.stringify(response.data))
+    //             return true
+    //             },(error) => {
+    //                 console.log(error),
+    //                     alert("user does not exists")
+    //                     return false
+    //             }
+    //         )
+    //}
+
+    function reverseString(str) {
+        // Step 1. Use the split() method to return a new array
+        var splitString = str.split(""); // var splitString = "hello".split("");
+        // ["h", "e", "l", "l", "o"]
+
+        // Step 2. Use the reverse() method to reverse the new created array
+        var reverseArray = splitString.reverse(); // var reverseArray = ["h", "e", "l", "l", "o"].reverse();
+        // ["o", "l", "l", "e", "h"]
+
+        // Step 3. Use the join() method to join all elements of the array into a string
+        var joinArray = reverseArray.join(""); // var joinArray = ["o", "l", "l", "e", "h"].join("");
+        // "olleh"
+        // console.log(joinArray)
+        //Step 4. Return the reversed string
+        return joinArray; // "olleh"
+    }
+
+
+
+    export default {
         name: "Login",
         props:{
             title: String
@@ -119,7 +120,7 @@ export default {
                 publicKey: '',
                 key: [],
                 serverKeySignature: [],
-                auth: true,
+                auth: false,
                 signatureVerified: false,
                 userSignature: '',
                 userSignatureHash: '',
@@ -130,14 +131,19 @@ export default {
         },
 
 
+       created() {
 
-        async created() {
+            console.log('Component has been created!');
+            console.log(myVar)
+            console.log(urlHost)
+            
+
             this.keystorkeTimes = [];
             let params = {}
-            axios({method: "POST", "url": "http://localhost:8081/getuserkey", data: params})
+            axios({method: "POST", "url": "http://"+urlHost+":8081/getuserkey", data: params})
                 .then(response =>{
 
-                    console.log(JSON.stringify(response.data))
+                    // console.log(JSON.stringify(response.data))
                     this.key = response.data
                     // this.publicKey =
                     // this.privateKey =
@@ -145,33 +151,31 @@ export default {
                     this.privateKey = reverseString(this.key.PrivateKey)
                     this.keys = true;
                     let params1 = {"publicKey": this.publicKey}
-                    axios({method: "POST", "url": "http://localhost:8081/setuserpublickey", data: params1})
+                    axios({method: "POST", "url": "http://"+urlHost+":8081/setuserpublickey", data: params1})
                         .then(response =>{
-                            console.log(JSON.stringify(response.data))
+                            // console.log(JSON.stringify(response.data))
                             this.temp = response.data
 
 
 
-                            axios({method: "POST", "url": "http://localhost:8081/getserverpublickey", data: params})
+                            axios({method: "POST", "url": "http://"+urlHost+":8081/getserverpublickey", data: params})
                                 .then(response =>{
-                                    console.log(JSON.stringify(response.data))
+                                    // console.log(JSON.stringify(response.data))
                                     this.temp = response.data
                                     this.serverPublicKey = this.temp.PublicKey
-
-
                                     let sha256 = require('sha-256-js');
                                     this.userSignature = sha256("I am the user username = user user id =id");
                                     // console.log("this.userSignature= " +this.userSignature)
                                     let params2 = {"msg":  this.userSignature}
-                                    axios({method: "POST", "url": "http://localhost:8081/doencrypt", data: params2})
+                                    axios({method: "POST", "url": "http://"+urlHost+":8081/doencrypt", data: params2})
                                         .then(response =>{
                                             this.severkey = true;
-                                            console.log(JSON.stringify(response.data))
+                                            //console.log(JSON.stringify(response.data))
                                             this.temp = response.data
                                             this.userSignatureHash = this.temp.encripted
 
                                             // let params3 = {}
-                                            // axios({method: "POST", "url": "http://localhost:8081/serverKeySignature", data: params3})
+                                            // axios({method: "POST", "url": "http://"+urlHost+":8081/serverKeySignature", data: params3})
                                             //     .then(response =>{
                                             //         this.severkey = true;
                                             //         console.log(JSON.stringify(response.data))
@@ -185,58 +189,46 @@ export default {
                                                         "signature": this.userSignature,
                                                         "hash": this.userSignatureHash
                                                     }
-                                                    axios({method: "POST", "url": "http://localhost:8081/usersignatureverify", data: params4})
+                                                    axios({method: "POST", "url": "http://"+urlHost+":8081/usersignatureverify", data: params4})
                                                         .then(response =>{
                                                             this.severkey = true;
-                                                            console.log(JSON.stringify(response.data))
+                                                            //console.log(JSON.stringify(response.data))
                                                             this.temp = response.data
 
 
                                                         })
-
-
-
-
                                                 // })
-
-
-
-
                                         })
-
-
-
                                 })
-
-
-
-
                         })
-
-
-
-
-
-
             })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         },
 
+        
+
+
+
+
         methods: {
+
+            getDeviceType: function() {
+                const ua = navigator.userAgent;
+                console.log(ua)
+                if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua)) {
+                    return "tablet";
+                }
+                if (
+                    /Mobile|iP(hone|od|ad)|Android|BlackBerry|IEMobile|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(
+                    ua
+                    )
+                ) {
+                    return "mobile";
+                }
+                return "desktop";
+            },
+
+
+
             submit: function () {
                 // `this` inside methods points to the Vue instance
                 if (this.password == '' || this.username == '') {
@@ -260,19 +252,23 @@ export default {
                 console.log(this.keystorkeTimes)
                 let sha256 = require('sha-256-js');
                 let enpassword = sha256(this.password);
+                let device = this.getDeviceType()
+                let ua = navigator.userAgent;
                 let params = {
                     username: this.username,
                     password: enpassword,
-                    keystorkeTimes: this.keystorkeTimes
+                    keystorkeTimes: this.keystorkeTimes,
+                    device: device,    
+                    userAgent: ua  
                 }
-                axios({method: "POST", "url": "http://localhost:8081/login", data: params})
+                axios({method: "POST", "url": "http://"+urlHost+":8081/login", data: params})
                     .then(response => {
                             console.log(JSON.stringify(response.data))
                             if (JSON.stringify(response.data) == "false") {
                                 alert("user does not exists")
                                 return false
                             }
-
+                            sessionStorage.setItem('loggedIn', true)
                             this.$router.push({path: '/home'});
 
                         }, (error) => {
@@ -310,6 +306,12 @@ export default {
                 let t2 = t.toString();
                 t2 =  t2.substring(6); 
                 this.keystorkeTimes.push("keydown:"+t2);
+                
+                var key = event.keyCode || event.charCode;
+                console.log(key)
+                // if( key == 8 || key == 46 )
+                //     return false;
+                // }
             },
 
             signUp: function () {
@@ -345,18 +347,13 @@ export default {
     }
 
 
-// let password = '*******';
+    // let password = '*******';
     // let username = 'username';
 
 
 
 </script>
 
-new Vue({
-    data() {
-    vueProp: 'vue variable' // visible to template
-    }
-});
 
 
 

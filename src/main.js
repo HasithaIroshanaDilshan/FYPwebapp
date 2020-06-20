@@ -10,6 +10,9 @@ import Login from "@/components/Login";
 import SignUp from "@/components/SignUp";
 import BiometricAuth from "@/components/BiometricAuth";
 import Home from "@/components/Home";
+import NavBar from '@/components/NavBar.vue';
+
+Vue.component('NavBar', NavBar);
 
 Vue.config.productionTip = false;
 Vue.use(VueRouter)

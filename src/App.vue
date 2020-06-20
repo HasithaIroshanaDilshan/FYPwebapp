@@ -15,25 +15,41 @@
   </div>
 </template>
 
+
+
+
+
+
 <script>
-// import HelloWorld from './components/HelloWorld.vue'
-// import Login from "@/components/Login";
+  // import HelloWorld from './components/HelloWorld.vue'
+  // import Login from "@/components/Login";
 
-// const routes = {
-//     '/': Login,
-//     '/HelloWorld': HelloWorld
-// }
+  // const routes = {
+  //     '/': Login,
+  //     '/HelloWorld': HelloWorld
+  // }
 
-import NavBar from "@/components/NavBar";
-export default {
-  name: 'app',
-  components: {
-      NavBar
-    // HelloWorld,
-    // Login
+  import NavBar from "@/components/NavBar";
+  export default {
+    name: 'app',
+    components: {
+        NavBar
+      // HelloWorld,
+      // Login
+    }
   }
-}
+
+
+
+
+
+
+
+
+
 </script>
+
+
 
 <style>
 #app {
