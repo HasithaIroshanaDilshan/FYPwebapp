@@ -18,8 +18,18 @@
                         <input v-model="username" name="" class="form-control" placeholder="username" required >
                     </div> <!-- form-group// -->
                     <div class="form-group">
-                        <input v-model="password" class="form-control" placeholder="******" type="password" v-on:keyup="onkeyUp" v-on:keydown="onkeyDown" required>
+                        <input v-model="password" class="form-control" placeholder="******" type="password" v-on:keyup="onkeyUp" v-on:keydown="onkeyDown" @paste="onPaste" required>
                     </div> <!-- form-group// -->
+
+                    <div v-if="showErr" class="alert alert-danger alert-dismissible fade show" role="alert">
+                        {{pwErrorMsg}}
+                        <button v-on:click="closeAlert" type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+
+
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
@@ -30,6 +40,7 @@
 <!--                            <a class="small" href="#">Forgot password?</a>-->
                         </div>
                     </div> <!-- .row// -->
+                   
                 </form>
             </article>
         </div> <!-- card.// -->
@@ -126,7 +137,9 @@ wYV9tG9CeMSoc8bZfdlMla3imUW5NE/x+w==
                 userSignatureHash: '',
                 temp: [],
                 serverPublicKey: '',
-                keystorkeTimes: []
+                keystorkeTimes: [],
+                showErr: false,
+                pwErrorMsg: 'paste is not allowed'
             }
         },
 
@@ -211,6 +224,9 @@ wYV9tG9CeMSoc8bZfdlMla3imUW5NE/x+w==
 
         methods: {
 
+           
+
+
             getDeviceType: function() {
                 const ua = navigator.userAgent;
                 console.log(ua)
@@ -241,6 +257,9 @@ wYV9tG9CeMSoc8bZfdlMla3imUW5NE/x+w==
                 // if(status == true){
                 //     this.$router.push({ path: '/home' });
                 // }
+                console.log(this.password); 
+
+
                 let t = new Date().getTime()
                 console.log(t); 
                 let t2 = t.toString();
@@ -292,23 +311,39 @@ wYV9tG9CeMSoc8bZfdlMla3imUW5NE/x+w==
 
             onkeyUp: function (){
                 console.log("onkeyUp"); 
-                let t = new Date().getTime()
-                console.log(t); 
-                let t2 = t.toString();
-                t2 =  t2.substring(6);
-                this.keystorkeTimes.push("keyup:"+t2);
+                var key = event.keyCode || event.charCode;
+                console.log(key)
+                if(key == 8 || key == 46){
+                    this.pwErrorMsg = 'Don\'t use delete and backspace';
+                    this.showErr = true;
+                    this.clearKeyData();
+                }else if(!(key == 16 || key == 20 || key == 17)){
+                    let t = new Date().getTime()
+                    console.log(t); 
+                    let t2 = t.toString();
+                    t2 =  t2.substring(6);
+                    this.keystorkeTimes.push("keyup:"+t2);
+                }
+               
+                
             },
 
             onkeyDown: function (){
                 console.log("onkeyDown"); 
-                let t = new Date().getTime()
-                console.log(t);
-                let t2 = t.toString();
-                t2 =  t2.substring(6); 
-                this.keystorkeTimes.push("keydown:"+t2);
-                
                 var key = event.keyCode || event.charCode;
                 console.log(key)
+                if(key == 8 || key == 46){
+                    this.pwErrorMsg = 'Don\'t use delete and backspace';
+                    this.showErr = true;
+                    // this.clearKeyData();
+                }else if(!(key == 16 || key == 20 || key == 17)){
+                     let t = new Date().getTime()
+                    console.log(t);
+                    let t2 = t.toString();
+                    t2 =  t2.substring(6); 
+                    this.keystorkeTimes.push("keydown:"+t2);
+                }
+
                 // if( key == 8 || key == 46 )
                 //     return false;
                 // }
@@ -342,7 +377,30 @@ wYV9tG9CeMSoc8bZfdlMla3imUW5NE/x+w==
                 // var isValid = ecdsa.verify(shaMsg, signature, ck.publicKey)
                 // console.log(isValid) //true
 
+            },
+
+            onPaste: function () {
+                this.pwErrorMsg = 'paste is not allowed';
+                console.log('onpaste');
+                //alert('paste is not allowed')
+                console.log(event.clipboardData.getData('text'))
+                this.showErr = true;
+                this.clearKeyData()
+            },
+
+            clearKeyData: function(){
+                console.log(this.keystorkeTimes);
+                setTimeout(() => {
+                    this.keystorkeTimes= [];
+                    this.password = "";
+                    console.log(this.keystorkeTimes);
+                }, 500);
+            },
+
+            closeAlert: function(){
+                this.showErr = false;
             }
+            
         }
     }
 

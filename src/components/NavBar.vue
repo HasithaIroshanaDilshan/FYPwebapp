@@ -2,7 +2,7 @@
 
     <div>
         <b-navbar toggleable="lg" type="dark" variant="info">
-            <a class="navbar-left" href="#">
+            <a class="navbar-left" href="home">
                 <img height="40" width="auto" src=".././assets/authentication-lock-icon.png" alt="">
             </a>
 

@@ -1,7 +1,7 @@
 <template>
   <div id="app">
       <NavBar/>
-
+      <Home/>
       <router-view></router-view>
       <link rel="stylesheet"
             href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
@@ -10,7 +10,7 @@
 <!--    <img alt="Vue logo" height="100" width="100" src="./assets/authentication-lock-icon.png">-->
 <!--    <HelloWorld msg="Welcome to Your Vue.js App"/>-->
 
-
+      
 <!--      <Login title="Biometric Based Remote User Authentication Scheme for Multi-Server Architecture" />-->
   </div>
 </template>
@@ -30,15 +30,17 @@
   // }
 
   import NavBar from "@/components/NavBar";
+  import Home from "@/components/Home"
   export default {
     name: 'app',
     components: {
-        NavBar
+        NavBar,
+        Home
       // HelloWorld,
       // Login
     }
   }
-
+" "
 
 
 
