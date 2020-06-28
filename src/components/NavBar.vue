@@ -1,6 +1,6 @@
 <template>
 
-    <div>
+    <div id="navBar">
         <b-navbar toggleable="lg" type="dark" variant="info">
             <a class="navbar-left" href="home">
                 <img height="40" width="auto" src=".././assets/authentication-lock-icon.png" alt="">
@@ -49,7 +49,7 @@ Authentication Schemes</b-navbar-text>
         },
 
         created() {
-            if(sessionStorage.getItem('loggedIn') == 'true'){
+            if(localStorage.getItem('loggedIn') == 'true'){
                 this.loggedIn = true;
             }
             
@@ -58,7 +58,7 @@ Authentication Schemes</b-navbar-text>
         methods: {
             logout(){
                 this.loggedIn = false
-                sessionStorage.setItem('loggedIn', false)
+                localStorage.setItem('loggedIn', false)
             }
         }
 
@@ -76,5 +76,17 @@ Authentication Schemes</b-navbar-text>
 
 </script>
 <style scoped>
+
+img {
+    height:"40";
+    width:"auto";
+}
+#navBar {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+}
 
 </style>

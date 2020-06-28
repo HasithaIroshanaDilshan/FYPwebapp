@@ -75,7 +75,7 @@ wYV9tG9CeMSoc8bZfdlMla3imUW5NE/x+w==
 
 
     import axios from "axios";
-    import { myVar, urlHost } from './variables.js'
+    import { urlHost } from './variables.js'
     // import VueRouter from "vue-router";
 
 
@@ -145,11 +145,6 @@ wYV9tG9CeMSoc8bZfdlMla3imUW5NE/x+w==
 
 
        created() {
-
-            console.log('Component has been created!');
-            console.log(myVar)
-            console.log(urlHost)
-            
 
             this.keystorkeTimes = [];
             let params = {}
@@ -287,7 +282,7 @@ wYV9tG9CeMSoc8bZfdlMla3imUW5NE/x+w==
                                 alert("user does not exists")
                                 return false
                             }
-                            sessionStorage.setItem('loggedIn', true)
+                            localStorage.setItem('loggedIn', true)
                             this.$router.push({path: '/home'});
 
                         }, (error) => {
