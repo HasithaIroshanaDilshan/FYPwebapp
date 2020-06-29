@@ -44,6 +44,8 @@
                 </form>
             </article>
         </div> <!-- card.// -->
+
+        
         <div v-if="auth">
             <p  v-if="keys" class="mt-2">User keys</p>
             <pre v-if="keys" class="text-left mt-2 mx-3" style="word-wrap: break-word;">public key: MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAE9nEOw+PPv9C5ORmG8xyL2ko7KPvt

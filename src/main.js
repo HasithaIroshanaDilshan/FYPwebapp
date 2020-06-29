@@ -12,6 +12,7 @@ import BiometricAuth from "@/components/BiometricAuth";
 import Home from "@/components/Home";
 import NavBar from '@/components/NavBar.vue';
 import Intro from '@/components/Intro';
+import TrainData from '@/components/TrainData';
 
 Vue.component('NavBar', NavBar);
 
@@ -23,7 +24,8 @@ const routes = [
   { path: '/signUp', component: SignUp},
   { path: '/biometric', component: BiometricAuth},
   { path: '/home', component: Home},
-  { path: '/Intro', component: Intro}
+  { path: '/Intro', component: Intro},
+  { path: '/TrainData', component: TrainData}
 ];
 
 const router = new VueRouter({

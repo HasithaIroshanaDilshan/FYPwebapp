@@ -19,7 +19,7 @@
                     <div class="card-body">
                         <h5 class="card-title">Add training data</h5>
                         <p class="card-text">Type password multiple times to add trainnig data set</p>
-                        <a href="#" class="btn btn-primary">Go</a>
+                        <a href="TrainData" class="btn btn-primary">Go</a>
                     </div>
                 </div>
             <!-- </div> -->
