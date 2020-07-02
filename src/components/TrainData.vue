@@ -49,7 +49,9 @@
                 <div class="card-body">
                     <h4 class="card-title">Instructions</h4>
                     <p class="card-text">{{Instructions}}</p>
-					<u style="color: rgb(0,0,255)" v-on:click="visitCmu">Keystroke Dynamics - Benchmark Data Set</u>
+					<a href="https://www.cs.cmu.edu/~keystroke/" target="_blank">Keystroke Dynamics - Benchmark Data Set</a>
+
+
                 </div>
             </div>
 		</div>
@@ -103,7 +105,7 @@
 				} else {
 					this.deviceType = "desktop";
 				}
-				
+
 				this.Instructions = Instructions;
             
 		},
@@ -111,10 +113,6 @@
 
 
 		methods: {
-
-			visitCmu: function () {
-				window.open('https://www.cs.cmu.edu/~keystroke/', '_blank');
-			},
 
             submit: function () {
                 if (this.password == '' || this.username == '') {
@@ -132,7 +130,6 @@
 				let enpassword = sha256(this.password);
 				let prevPw = sessionStorage.getItem('pw');
 				if( (prevPw !=null) && (prevPw != enpassword) ){
-					console.log("here")
 					this.pwErrorMsg = "wrong password"
 					this.addSuccess = false;
 					this.showErr = true;
@@ -159,11 +156,13 @@
 								this.clearKeyData();
                                 // alert("wrong password")
                                 return false
-                            }
+                            } else if(JSON.stringify(response.data) === "User not registered"){
+								return false
+							}
 							this.clearKeyData();
 							this.showErr = false;
 							this.addSuccess = true;
-							sessionStorage.setItem("pw", enpassword)
+							// sessionStorage.setItem("pw", enpassword)
 							// setTimeout(this.addSuccess = false, 2000);
 							// setTimeout(function(){
 							// 	alert("Hello");

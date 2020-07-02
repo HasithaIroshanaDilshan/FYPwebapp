@@ -60,7 +60,7 @@
 		},
 
 		created() {
-			console.log(window.location.pathname)
+			// console.log(window.location.pathname)
 			if (localStorage.getItem("loggedIn") == "true") {
 			this.showAbstract = false;
 				if(window.location.pathname == "/"){

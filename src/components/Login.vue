@@ -45,7 +45,7 @@
             </article>
         </div> <!-- card.// -->
 
-        
+
         <div v-if="auth">
             <p  v-if="keys" class="mt-2">User keys</p>
             <pre v-if="keys" class="text-left mt-2 mx-3" style="word-wrap: break-word;">public key: MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAE9nEOw+PPv9C5ORmG8xyL2ko7KPvt
@@ -230,11 +230,7 @@ wYV9tG9CeMSoc8bZfdlMla3imUW5NE/x+w==
                 if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua)) {
                     return "tablet";
                 }
-                if (
-                    /Mobile|iP(hone|od|ad)|Android|BlackBerry|IEMobile|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(
-                    ua
-                    )
-                ) {
+                if (/Mobile|iP(hone|od|ad)|Android|BlackBerry|IEMobile|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(ua)) {
                     return "mobile";
                 }
                 return "desktop";
