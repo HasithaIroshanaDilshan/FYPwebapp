@@ -19,7 +19,9 @@
                     <div class="card-body">
                         <h5 class="card-title">Add training data</h5>
                         <p class="card-text">Type password multiple times to add trainnig data set</p>
-                        <a href="TrainData" class="btn btn-primary">Go</a>
+                        <router-link to="TrainData">
+                        <a  class="btn btn-primary">Go</a>
+                        </router-link>
                     </div>
                 </div>
             <!-- </div> -->
@@ -27,7 +29,7 @@
             <div class="pt-4">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Special title treatment</h5>
+                        <h5 class="card-title">View Profile</h5>
                         <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
                         <a href="#" class="btn btn-primary">Go somewhere</a>
                     </div>
@@ -37,7 +39,7 @@
             <div class="pt-4">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Special title treatment</h5>
+                        <h5 class="card-title">View results</h5>
                         <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
                         <a href="#" class="btn btn-primary">Go somewhere</a>
                     </div>
