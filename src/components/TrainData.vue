@@ -115,6 +115,7 @@
 		methods: {
 
             submit: function () {
+				console.log('urlhost= '+ urlHost)
                 if (this.password == '' || this.username == '') {
                     return
                 }
@@ -146,7 +147,7 @@
 					userAgent: ua,
 					pw: this.password  
                 }
-                axios({method: "POST", "url": "http://"+urlHost+":8081/trainset", data: params})
+                axios({method: "POST", "url": process.env.VUE_APP_URLSERVER+"/trainset", data: params})
                     .then(response => {
                             console.log(JSON.stringify(response.data))
                             if (JSON.stringify(response.data) == "false") {
