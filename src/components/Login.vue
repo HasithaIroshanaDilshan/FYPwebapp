@@ -273,15 +273,15 @@ wYV9tG9CeMSoc8bZfdlMla3imUW5NE/x+w==
                     device: device,    
                     userAgent: ua  
                 }
-                axios({method: "POST", "url": "http://"+urlHost+":8081/login", data: params})
+                axios({method: "POST", "url":urlHost+"/login", data: params})
                     .then(response => {
                             console.log(JSON.stringify(response.data))
                             if (JSON.stringify(response.data) == "false") {
                                 alert("user does not exists")
                                 return false
                             }
-                            localStorage.setItem('loggedIn', true)
-                            this.$router.push({path: '/home'});
+                            // localStorage.setItem('loggedIn', true)
+                            // this.$router.push({path: '/home'});
 
                         }, (error) => {
                             console.log(error),

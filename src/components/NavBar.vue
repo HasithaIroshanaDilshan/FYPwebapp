@@ -22,7 +22,8 @@
           </b-navbar-nav>
           <b-navbar-nav v-if="loggedIn">
             <b-nav-item router-link to="Home">Home</b-nav-item>
-            <b-nav-item router-link to="TrainData">Train Data</b-nav-item>
+            <b-nav-item router-link to="TrainData">Train</b-nav-item>
+            <b-nav-item router-link to="Test">Test</b-nav-item>
           </b-navbar-nav>
           <b-nav-item-dropdown right v-if="loggedIn">
             <!-- Using 'button-content' slot -->

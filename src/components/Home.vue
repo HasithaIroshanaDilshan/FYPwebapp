@@ -20,7 +20,7 @@
                         <h5 class="card-title">Add training data</h5>
                         <p class="card-text">Type password multiple times to add trainnig data set</p>
                         <router-link to="TrainData">
-                        <a  class="btn btn-primary">Go</a>
+                        <a  class="btn btn-primary"><span style="color: white">Train</span></a>
                         </router-link>
                     </div>
                 </div>
@@ -29,9 +29,11 @@
             <div class="pt-4">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">View Profile</h5>
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                        <h5 class="card-title">Test</h5>
+                        <p class="card-text">Test created model.</p>
+                        <router-link to="Test">
+                        <a class="btn btn-primary"><span style="color: white">Test</span></a>
+                        </router-link>
                     </div>
                 </div>
             </div>
@@ -40,8 +42,10 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">View results</h5>
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                        <p class="card-text">Graphically view classification results.</p>
+                        <router-link to="Test">
+                        <a  class="btn btn-primary"><span style="color: white">View</span></a>
+                        </router-link>
                     </div>
                 </div>
             </div>
