@@ -59,7 +59,7 @@
             <h4 class="mx-auto">Genuine login</h4>
           </div>
         </div>
-        <div class="m-2">
+        <!-- <div class="m-2">
           <p class="detail">
             Model 1:
             <span v-bind:style="{ color: modelOneColor}" class="name">{{modelOneStatus}}</span>
@@ -68,7 +68,7 @@
             Model 2:
             <span v-bind:style="{ color: modelOneColor}">{{modelOneStatus}}</span>
           </p>
-        </div>
+        </div> -->
         <div class="m-2">
           <button type="button" class="btn btn-primary mx-auto">Test Again</button>
         </div>
@@ -83,7 +83,7 @@
             <h4 class="mx-auto">Impostor</h4>
           </div>
         </div>
-        <div class="m-2">
+        <!-- <div class="m-2">
           <p class="detail">
             Model 1:
             <span v-bind:style="{ color: modelOneColor}" class="name">{{modelOneStatus}}</span>
@@ -92,7 +92,7 @@
             Model 2:
             <span v-bind:style="{ color: modelTwoColor}">{{modelTwoStatus}}</span>
           </p>
-        </div>
+        </div> -->
         <div class="m-2">
           <button type="button" class="btn btn-primary mx-auto">Test Again</button>
         </div>
@@ -132,8 +132,8 @@ export default {
       keystorkeTimes: [],
       showErr: false,
       pwErrorMsg: "paste is not allowed",
-      accepted: false,
-      rejected: true,
+      accepted: true,
+      rejected: false,
       showLogin: false,
       modelOneColor: "green",
       modelOneStatus: "Genuine",

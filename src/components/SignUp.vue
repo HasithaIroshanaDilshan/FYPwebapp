@@ -27,7 +27,7 @@
 
 <script>
     import axios from "axios";
-
+    import { urlHost } from "./variables.js"    
     // function validateForm(username,email,password,confirmPassword ) {
     //     if( username == ''||email == '' || password == '' ||confirmPassword == '' ) {
     //         console.log("invalid data");
@@ -102,7 +102,8 @@
                         password: enpassword,
                         email: this.email
                     }
-                    axios({method: "POST", "url": "http://localhost:8081/users", data: params})
+                    console.log(urlHost)
+                    axios({method: "POST", "url": urlHost+"/users", data: params})
                         .then(response => {
                                 console.log(JSON.stringify(response.data))
                                 this.$router.push({path: '/login'});

@@ -58,11 +58,18 @@ export default {
   created() {
 	// console.log(window.location.pathname)
 	console.log('path Name= '+ window.location.pathname)
+	let pathname = window.location.pathname;
+	let pathnameUpper = pathname.toUpperCase();
+	console.log(pathnameUpper)
 	if (localStorage.getItem("loggedIn") == "true") {
 		this.showAbstract = false;
-		if(window.location.pathname == "/") {
+		if(pathname == "/") {
+			this.$router.push("/Home");
+		} else if(pathnameUpper == "/LOGIN"|| pathnameUpper == "/SIGNUP"){
 			this.$router.push("/Home");
 		}
+	} else if(pathnameUpper == "/LOGIN"|| pathnameUpper == "/SIGNUP") {
+		this.$router.push(pathname);
 	} else {
 		this.$router.push("/Intro");
 	}

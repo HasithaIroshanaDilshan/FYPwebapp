@@ -4,7 +4,9 @@
         <div v-if="!auth" class="card mx-auto mt-3" style="width: 18rem; ">
 
             <article class="card-body">
-                <a href = "signUp" class="float-right btn btn-outline-primary" >Sign up</a>
+                <router-link to="signUp">
+                  <a class="float-right btn btn-outline-primary" >Sign up</a>
+                </router-link>
 
                 <!-- <li class="nav-item">  <router-link class="nav-link" to="/blog">Blog</router-link></li>-->
                 <h4 class="card-title mb-4 mt-1">Sign in</h4>
@@ -99,22 +101,22 @@ wYV9tG9CeMSoc8bZfdlMla3imUW5NE/x+w==
     //         )
     //}
 
-    function reverseString(str) {
-        // Step 1. Use the split() method to return a new array
-        var splitString = str.split(""); // var splitString = "hello".split("");
-        // ["h", "e", "l", "l", "o"]
+    // function reverseString(str) {
+    //     // Step 1. Use the split() method to return a new array
+    //     var splitString = str.split(""); // var splitString = "hello".split("");
+    //     // ["h", "e", "l", "l", "o"]
 
-        // Step 2. Use the reverse() method to reverse the new created array
-        var reverseArray = splitString.reverse(); // var reverseArray = ["h", "e", "l", "l", "o"].reverse();
-        // ["o", "l", "l", "e", "h"]
+    //     // Step 2. Use the reverse() method to reverse the new created array
+    //     var reverseArray = splitString.reverse(); // var reverseArray = ["h", "e", "l", "l", "o"].reverse();
+    //     // ["o", "l", "l", "e", "h"]
 
-        // Step 3. Use the join() method to join all elements of the array into a string
-        var joinArray = reverseArray.join(""); // var joinArray = ["o", "l", "l", "e", "h"].join("");
-        // "olleh"
-        // console.log(joinArray)
-        //Step 4. Return the reversed string
-        return joinArray; // "olleh"
-    }
+    //     // Step 3. Use the join() method to join all elements of the array into a string
+    //     var joinArray = reverseArray.join(""); // var joinArray = ["o", "l", "l", "e", "h"].join("");
+    //     // "olleh"
+    //     // console.log(joinArray)
+    //     //Step 4. Return the reversed string
+    //     return joinArray; // "olleh"
+    // }
 
 
 
@@ -148,70 +150,70 @@ wYV9tG9CeMSoc8bZfdlMla3imUW5NE/x+w==
 
        created() {
 
-            this.keystorkeTimes = [];
-            let params = {}
-            axios({method: "POST", "url": "http://"+urlHost+":8081/getuserkey", data: params})
-                .then(response =>{
+            // this.keystorkeTimes = [];
+            // let params = {}
+            // axios({method: "POST", "url": "http://"+urlHost+"/getuserkey", data: params})
+            //     .then(response =>{
 
-                    // console.log(JSON.stringify(response.data))
-                    this.key = response.data
-                    // this.publicKey =
-                    // this.privateKey =
-                    this.publicKey = reverseString(this.key.PublicKey)
-                    this.privateKey = reverseString(this.key.PrivateKey)
-                    this.keys = true;
-                    let params1 = {"publicKey": this.publicKey}
-                    axios({method: "POST", "url": "http://"+urlHost+":8081/setuserpublickey", data: params1})
-                        .then(response =>{
-                            // console.log(JSON.stringify(response.data))
-                            this.temp = response.data
-
-
-
-                            axios({method: "POST", "url": "http://"+urlHost+":8081/getserverpublickey", data: params})
-                                .then(response =>{
-                                    // console.log(JSON.stringify(response.data))
-                                    this.temp = response.data
-                                    this.serverPublicKey = this.temp.PublicKey
-                                    let sha256 = require('sha-256-js');
-                                    this.userSignature = sha256("I am the user username = user user id =id");
-                                    // console.log("this.userSignature= " +this.userSignature)
-                                    let params2 = {"msg":  this.userSignature}
-                                    axios({method: "POST", "url": "http://"+urlHost+":8081/doencrypt", data: params2})
-                                        .then(response =>{
-                                            this.severkey = true;
-                                            //console.log(JSON.stringify(response.data))
-                                            this.temp = response.data
-                                            this.userSignatureHash = this.temp.encripted
-
-                                            // let params3 = {}
-                                            // axios({method: "POST", "url": "http://"+urlHost+":8081/serverKeySignature", data: params3})
-                                            //     .then(response =>{
-                                            //         this.severkey = true;
-                                            //         console.log(JSON.stringify(response.data))
-                                            //         this.serverKeySignature = response.data
-                                            //         if(this.serverKeySignature.Hash == this.serverKeySignature.Hash){
-                                            //             this.signatureVerified = true
-                                            //         }
+            //         // console.log(JSON.stringify(response.data))
+            //         this.key = response.data
+            //         // this.publicKey =
+            //         // this.privateKey =
+            //         this.publicKey = reverseString(this.key.PublicKey)
+            //         this.privateKey = reverseString(this.key.PrivateKey)
+            //         this.keys = true;
+            //         let params1 = {"publicKey": this.publicKey}
+            //         axios({method: "POST", "url": "http://"+urlHost+"/setuserpublickey", data: params1})
+            //             .then(response =>{
+            //                 // console.log(JSON.stringify(response.data))
+            //                 this.temp = response.data
 
 
-                                                    let params4 = {"publicKey": this.publicKey,
-                                                        "signature": this.userSignature,
-                                                        "hash": this.userSignatureHash
-                                                    }
-                                                    axios({method: "POST", "url": "http://"+urlHost+":8081/usersignatureverify", data: params4})
-                                                        .then(response =>{
-                                                            this.severkey = true;
-                                                            //console.log(JSON.stringify(response.data))
-                                                            this.temp = response.data
+
+            //                 axios({method: "POST", "url": "http://"+urlHost+"/getserverpublickey", data: params})
+            //                     .then(response =>{
+            //                         // console.log(JSON.stringify(response.data))
+            //                         this.temp = response.data
+            //                         this.serverPublicKey = this.temp.PublicKey
+            //                         let sha256 = require('sha-256-js');
+            //                         this.userSignature = sha256("I am the user username = user user id =id");
+            //                         // console.log("this.userSignature= " +this.userSignature)
+            //                         let params2 = {"msg":  this.userSignature}
+            //                         axios({method: "POST", "url": "http://"+urlHost+"/doencrypt", data: params2})
+            //                             .then(response =>{
+            //                                 this.severkey = true;
+            //                                 //console.log(JSON.stringify(response.data))
+            //                                 this.temp = response.data
+            //                                 this.userSignatureHash = this.temp.encripted
+
+            //                                 // let params3 = {}
+            //                                 // axios({method: "POST", "url": "http://"+urlHost+":8081/serverKeySignature", data: params3})
+            //                                 //     .then(response =>{
+            //                                 //         this.severkey = true;
+            //                                 //         console.log(JSON.stringify(response.data))
+            //                                 //         this.serverKeySignature = response.data
+            //                                 //         if(this.serverKeySignature.Hash == this.serverKeySignature.Hash){
+            //                                 //             this.signatureVerified = true
+            //                                 //         }
 
 
-                                                        })
-                                                // })
-                                        })
-                                })
-                        })
-            })
+            //                                         let params4 = {"publicKey": this.publicKey,
+            //                                             "signature": this.userSignature,
+            //                                             "hash": this.userSignatureHash
+            //                                         }
+            //                                         axios({method: "POST", "url": "http://"+urlHost+"/usersignatureverify", data: params4})
+            //                                             .then(response =>{
+            //                                                 this.severkey = true;
+            //                                                 //console.log(JSON.stringify(response.data))
+            //                                                 this.temp = response.data
+
+
+            //                                             })
+            //                                     // })
+            //                             })
+            //                     })
+            //             })
+            // })
         },
 
         
@@ -279,10 +281,11 @@ wYV9tG9CeMSoc8bZfdlMla3imUW5NE/x+w==
                             if (JSON.stringify(response.data) == "false") {
                                 alert("user does not exists")
                                 return false
+                            } else {
+                                localStorage.setItem('loggedIn', true)
+                                this.$router.push({path: '/home'});
                             }
-                            // localStorage.setItem('loggedIn', true)
-                            // this.$router.push({path: '/home'});
-
+                            
                         }, (error) => {
                             console.log(error),
                                 alert("user does not exists")

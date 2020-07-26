@@ -97,7 +97,11 @@
 import axios from "axios";
 import { urlHost } from "./variables.js";
 import { Instructions } from "./content.js";
+import { validateMixing } from '../mixing/generalMixin'
+
+
 export default {
+  mixins: [validateMixing],
   name: "TrainData",
   props: [],
   mounted() {},
@@ -124,6 +128,8 @@ export default {
   },
 
   created() {
+    // validateMixing.checklog();
+    console.log("train data created");
     const ua = navigator.userAgent;
     this.userAgent = ua;
     // console.log(ua)
